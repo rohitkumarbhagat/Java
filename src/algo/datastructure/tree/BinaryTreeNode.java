@@ -1,32 +1,18 @@
 package algo.datastructure.tree;
 
-public class BinaryTreeNode {
-	private int data;
-	private BinaryTreeNode left;
-	private BinaryTreeNode right;
+public class BinaryTreeNode extends TreeNode<BinaryTreeNode>
+{
 
-	public int getData() {
-		return data;
+	public BinaryTreeNode()
+	{
+		super();
+
 	}
 
-	public void setData(int data) {
-		this.data = data;
-	}
+	public BinaryTreeNode(int data, BinaryTreeNode left, BinaryTreeNode right)
+	{
+		super(data, left, right);
 
-	public BinaryTreeNode getLeft() {
-		return left;
-	}
-
-	public void setLeft(BinaryTreeNode left) {
-		this.left = left;
-	}
-
-	public BinaryTreeNode getRight() {
-		return right;
-	}
-
-	public void setRight(BinaryTreeNode right) {
-		this.right = right;
 	}
 
 }
