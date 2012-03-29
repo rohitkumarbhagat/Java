@@ -46,4 +46,14 @@ public class AvlTreeNode extends TreeNode<AvlTreeNode>
 
 		height = Math.max(leftTreeHeight, rightTreeHeight) + 1;
 	}
+
+	public boolean isAVLTreeNode()
+	{
+		int leftTreeHeight = this.getLeft() != null ? getLeft().getHeight() : -1;
+		int rightTreeHeight = this.getRight() != null ? getRight().getHeight() : -1;
+		if (Math.abs(leftTreeHeight - rightTreeHeight) > 1)
+			return false;
+		return true;
+
+	}
 }
