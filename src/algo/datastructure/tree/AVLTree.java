@@ -135,4 +135,14 @@ public class AVLTree {
 
 		return root;
 	}
+	
+	public void remove(int data){
+		
+	}
+	
+	private AvlTreeNode remove(AvlTreeNode root, int data){
+		if(root == null){
+			return null;
+		}
+	}
 }
