@@ -3,77 +3,62 @@
  */
 package algo.datastructure.tree;
 
+import java.util.ArrayList;
+
+import com.sun.tools.javac.code.Attribute.Array;
+
 /**
  * @author erotkur
  * 
  */
-public class AVLTree
-{
+public class AVLTree {
 	private AvlTreeNode root;
 
-	public AvlTreeNode getRoot()
-	{
+	public AvlTreeNode getRoot() {
 		return root;
 	}
 
-	public void setRoot(AvlTreeNode root)
-	{
+	public void setRoot(AvlTreeNode root) {
 		this.root = root;
 	}
 
-	public void add(int data)
-	{
+	public void add(int data) {
 		root = add(root, data);
 	}
 
-	private AvlTreeNode add(AvlTreeNode root, int data)
-	{
-		if (root == null)
-		{
+	private AvlTreeNode add(AvlTreeNode root, int data) {
+		if (root == null) {
 			root = new AvlTreeNode(0, data, null, null);
 
-		}
-		else
-		{
-			if (root.getData() > data)
-			{
+		} else {
+			if (root.getData() > data) {
 				// add data to left tree
 
 				root.setLeft(add(root.getLeft(), data));
 				int leftData = root.getLeft().getData();
 				root.refreshHeight();
-				if (!root.isAVLTreeNode())
-				{
-					if (data < leftData)
-					{
+				if (!root.isAVLTreeNode()) {
+					if (data < leftData) {
 						// added to left of left
 						root = rotateRight(root);
 
-					}
-					else
-					{
+					} else {
 						// added to right of left
 						root = rotateLeftRight(root);
 					}
 				}
-			}
-			else
-			{
+			} else {
 				// add data to right tree
 				root.setRight(add(root.getRight(), data));
 				int rightData = root.getRight().getData();
 				root.refreshHeight();
 				// root.refreshHeight();
-				if (!root.isAVLTreeNode())
-				{
-					if (data > rightData)
-					{
+				if (!root.isAVLTreeNode()) {
+					if (data > rightData) {
 						// added to right of right
 						root = rotateLeft(root);
 
-					}
-					else
-					{
+					} else {
 						// added to right of left
 						root = rotateRightLeft(root);
 					}
@@ -85,10 +70,8 @@ public class AVLTree
 		return root;
 	}
 
-	private AvlTreeNode rotateRight(AvlTreeNode root)
-	{
-		if (root == null || root.getLeft() == null)
-		{
+	private AvlTreeNode rotateRight(AvlTreeNode root) {
+		if (root == null || root.getLeft() == null) {
 			// Not possible in this case
 			return null;
 		}
@@ -106,10 +89,8 @@ public class AVLTree
 
 	}
 
-	private AvlTreeNode rotateLeft(AvlTreeNode root)
-	{
-		if (root == null || root.getRight() == null)
-		{
+	private AvlTreeNode rotateLeft(AvlTreeNode root) {
+		if (root == null || root.getRight() == null) {
 			// Not possible
 			return null;
 		}
@@ -123,10 +104,9 @@ public class AVLTree
 		return root;
 	}
 
-	private AvlTreeNode rotateRightLeft(AvlTreeNode root)
-	{
-		if (root == null || root.getRight() == null || root.getRight().getLeft() == null)
-		{
+	private AvlTreeNode rotateRightLeft(AvlTreeNode root) {
+		if (root == null || root.getRight() == null
+				|| root.getRight().getLeft() == null) {
 			return null;
 		}
 		AvlTreeNode afterRightRotate = rotateRight(root.getRight());
@@ -140,10 +120,9 @@ public class AVLTree
 		return root;
 	}
 
-	private AvlTreeNode rotateLeftRight(AvlTreeNode root)
-	{
-		if (root == null || root.getLeft() == null || root.getLeft().getRight() == null)
-		{
+	private AvlTreeNode rotateLeftRight(AvlTreeNode root) {
+		if (root == null || root.getLeft() == null
+				|| root.getLeft().getRight() == null) {
 			return null;
 		}
 		AvlTreeNode afterLeftRotate = rotateLeft(root.getLeft());
@@ -157,79 +136,67 @@ public class AVLTree
 		return root;
 	}
 
-	public void remove(int data)
-	{
+	public void remove(int data) {
 		root = remove(root, data);
 
 	}
 
-	private AvlTreeNode remove(AvlTreeNode root, int data)
-	{
-		if (root == null)
-		{
+	private AvlTreeNode remove(AvlTreeNode root, int data) {
+		if (root == null) {
 			return null;
 		}
+		// ArrayList<E>
 
 		// Check if it is the node for deletion
 
-		if (data < root.getData())
-		{
+		if (data < root.getData()) {
 			// remove from left node
 			root.setLeft(remove(root.getLeft(), data));
 			root.refreshHeight();
 			// check Avl property
-			if (!root.isAVLTreeNode())
-			{
+			if (!root.isAVLTreeNode()) {
 				// similar to adding new element on right hand node
-				int rightChildLeftTreeHeigh = root.getRight().getLeft() != null ? root.getRight().getLeft().getHeight()
+				int rightChildLeftTreeHeigh = root.getRight().getLeft() != null ? root
+						.getRight().getLeft().getHeight()
 						: -1;
-				int rightChildRightTreeHeigh = root.getRight().getRight() != null ? root.getRight().getRight()
-						.getHeight() : -1;
+				int rightChildRightTreeHeigh = root.getRight().getRight() != null ? root
+						.getRight().getRight().getHeight()
+						: -1;
 
-				if (rightChildLeftTreeHeigh > rightChildRightTreeHeigh)
-				{
+				if (rightChildLeftTreeHeigh > rightChildRightTreeHeigh) {
 					// inserted in left of right child
 					root = rotateRightLeft(root);
-				}
-				else
-				{
+				} else {
 					// inserted in right of right child
 					root = rotateLeft(root);
 				}
 			}
-		}
-		else if (data > root.getData())
-		{
+		} else if (data > root.getData()) {
 			// remove from right node
 			root.setRight(remove(root.getRight(), data));
 
 			root.refreshHeight();
 			// check Avl property
-			if (!root.isAVLTreeNode())
-			{
-				// similar to adding new element on right hand node
-				int leftChildRightTreeHeight = root.getLeft().getRight() != null ? root.getLeft().getRight()
-						.getHeight() : -1;
-				int leftChildLeftTreeHeight = root.getLeft().getLeft() != null ? root.getLeft().getLeft().getHeight()
+			if (!root.isAVLTreeNode()) {
+				// similar to adding new element on left hand node
+				int leftChildRightTreeHeight = root.getLeft().getRight() != null ? root
+						.getLeft().getRight().getHeight()
+						: -1;
+				int leftChildLeftTreeHeight = root.getLeft().getLeft() != null ? root
+						.getLeft().getLeft().getHeight()
 						: -1;
 
-				if (leftChildRightTreeHeight > leftChildLeftTreeHeight)
-				{
+				if (leftChildRightTreeHeight > leftChildLeftTreeHeight) {
 					// inserted in right of left child
 					root = rotateLeftRight(root);
-				}
-				else
-				{
+				} else {
 					// inserted in left of left child
 					root = rotateRight(root);
 				}
 			}
-		}
-		else
-		{
+		} else {
 			// This is the node to delete
-			if (root.getLeft() != null && root.getRight() != null)
-			{
+			if (root.getLeft() != null && root.getRight() != null) {
 				// find max element in left subtree
 				AvlTreeNode maxNode = getMaximum(root.getLeft());
 				// remove this node from left node and set new left node
@@ -240,15 +207,10 @@ public class AVLTree
 				root = maxNode;
 				root.refreshHeight();
 
-			}
-			else
-			{
-				if (root.getLeft() != null)
-				{
+			} else {
+				if (root.getLeft() != null) {
 					root = root.getLeft();
-				}
-				else
-				{
+				} else {
 					root = root.getRight();
 				}
 			}
@@ -256,16 +218,38 @@ public class AVLTree
 		return root;
 	}
 
-	private AvlTreeNode getMaximum(AvlTreeNode root)
-	{
+	private AvlTreeNode getMaximum(AvlTreeNode root) {
 
 		if (root == null)
 			return null;
 		AvlTreeNode maxNode = root;
-		while (maxNode.getRight() != null)
-		{
+		while (maxNode.getRight() != null) {
 			maxNode = maxNode.getRight();
 		}
 		return maxNode;
+	}
+
+	public int countBetween(int l, int r) {
+		return countBetween(root, l, r);
+
+	}
+
+	private int countBetween(AvlTreeNode root, int l, int r) {
+		if (root == null) {
+			return 0;
+		}
+		int count = 0;
+		if (l < root.getData()) {
+			count += countBetween(root.getLeft(), l, r);
+		}
+		if (r > root.getData()) {
+			count += countBetween(root.getRight(), l, r);
+
+		}
+		if (root.getData() > l && root.getData() < r) {
+			System.out.println("countBetween = "+ root.getData());
+			count++;
+		}
+		return count;
 	}
 }
