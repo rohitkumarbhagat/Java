@@ -1,6 +1,7 @@
 package algo.datastructure.tree;
 
 import java.lang.reflect.Array;
+import java.util.HashMap;
 
 /**
  * @author rohitkumar
@@ -14,11 +15,12 @@ public class MinHeap<T extends Comparable<T>> {
 	private int length;
 
 	private int capacity;
+	private Class<T> claz;
 
 	public MinHeap(Class<T> clazz, int capacity) {
 		// dataArray = (T[]) new Object[capacity];
 		// this.dataArray = new T[capacity];
-
+		this.claz = clazz;
 		dataArray = (T[]) Array.newInstance(clazz, capacity);
 		length = 0;
 		this.capacity = capacity;
@@ -49,10 +51,11 @@ public class MinHeap<T extends Comparable<T>> {
 	}
 
 	public boolean isFull() {
-		if (length >= capacity) {
-			return true;
-		}
-		return false;
+//		if (length >= capacity) {
+//			return true;
+//		}
+		//return false;
+		return length >= capacity;
 	}
 
 	private boolean heapify(int index) {
@@ -247,6 +250,50 @@ public class MinHeap<T extends Comparable<T>> {
 			}
 		}
 		return -1;
+	}
+
+	public T getMin() {
+		if (length > 0) {
+			return dataArray[0];
+
+		}
+		return null;
+	}
+
+	public T getKthLargest(int k) {
+		T kthLargestElement = null;
+		// check for boundary cases
+		if (k > 0 && k <= length) {
+			int count = 0;
+			// stores index of minimum elements and not elements themselves
+			MinHeap<T> tempHeap = new MinHeap<T>(this.claz, k + 1);
+			tempHeap.add(this.getMin());
+			HashMap<T, Integer> map = new HashMap<T, Integer>();
+			map.put(this.getMin(), 0);
+			while (true) {
+				kthLargestElement = tempHeap.getMin();
+				tempHeap.deleteIndex(0);
+				if (++count == k) {
+					return kthLargestElement;
+				}
+				int leftIndex = getLeftChild(map.get(kthLargestElement));
+				int rightIndex = getRightChild(map.get(kthLargestElement));
+				T left = leftIndex == -1 ? null : dataArray[leftIndex];
+				T right = rightIndex == -1 ? null : dataArray[rightIndex];
+				if (left != null) {
+					tempHeap.add(left);
+					map.put(left, leftIndex);
+				}
+				if (right != null) {
+					tempHeap.add(right);
+					map.put(right, rightIndex);
+
+				}
+
+			}
+
+		}
+		return kthLargestElement;
 	}
 
 }

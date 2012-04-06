@@ -26,8 +26,9 @@ public class TestMinHeap
 		System.out.println("************************");
 		System.out.println(intHeap);
 		System.out.println("************************");
-		intHeap.sort();
+		//intHeap.sort();
 		System.out.println(intHeap);
+		System.out.println(intHeap.getKthLargest(7));
 
 	}
 }
