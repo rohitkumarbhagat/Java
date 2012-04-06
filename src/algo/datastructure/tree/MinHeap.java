@@ -51,10 +51,10 @@ public class MinHeap<T extends Comparable<T>> {
 	}
 
 	public boolean isFull() {
-//		if (length >= capacity) {
-//			return true;
-//		}
-		//return false;
+		// if (length >= capacity) {
+		// return true;
+		// }
+		// return false;
 		return length >= capacity;
 	}
 
@@ -241,6 +241,10 @@ public class MinHeap<T extends Comparable<T>> {
 		}
 		return deletedNode;
 
+	}
+
+	public int length() {
+		return length;
 	}
 
 	private int indexOf(T element) {
