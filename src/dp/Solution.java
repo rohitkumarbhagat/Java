@@ -1,6 +1,5 @@
 package dp;
 
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -13,74 +12,79 @@ import java.util.Vector;
 /**
  * @author thiagogenez
  * 
- *         Facebook hiring sample test
  * 
- *         There are K pegs. Each peg can hold discs in decreasing order of
- *         radius when looked from bottom to top of the peg. There are N discs
- *         which have radius 1 to N; Given the initial configuration of the pegs
- *         and the final configuration of the pegs, output the moves required to
- *         transform from the initial to final configuration. You are required
- *         to do the transformations in minimal number of moves.
+ *         There are K pegs. Each peg can hold discs in decreasing order of radius when looked from bottom to top of the
+ *         peg. There are N discs which have radius 1 to N; Given the initial configuration of the pegs and the final
+ *         configuration of the pegs, output the moves required to transform from the initial to final configuration.
+ *         You are required to do the transformations in minimal number of moves.
  * 
- *         A move consists of picking the topmost disc of any one of the pegs
- *         and placing it on top of anyother peg. At anypoint of time, the
- *         decreasing radius property of all the pegs must be maintained.
+ *         A move consists of picking the topmost disc of any one of the pegs and placing it on top of anyother peg. At
+ *         anypoint of time, the decreasing radius property of all the pegs must be maintained.
  * 
  *         Constraints: 1<= N<=8 3<= K<=5
  * 
- *         Input Format: N K 2nd line contains N integers. Each integer in the
- *         second line is in the range 1 to K where the i-th integer denotes the
- *         peg to which disc of radius i is present in the initial
- *         configuration. 3rd line denotes the final configuration in a format
- *         similar to the initial configuration.
+ *         Input Format: N K 2nd line contains N integers. Each integer in the second line is in the range 1 to K where
+ *         the i-th integer denotes the peg to which disc of radius i is present in the initial configuration. 3rd line
+ *         denotes the final configuration in a format similar to the initial configuration.
  * 
- *         Output Format: The first line contains M - The minimal number of
- *         moves required to complete the transformation. The following M lines
- *         describe a move, by a peg number to pick from and a peg number to
- *         place on. If there are more than one solutions, it's sufficient to
- *         output any one of them. You can assume, there is always a solution
- *         with less than 7 moves and the initial confirguration will not be
- *         same as the final one.
+ *         Output Format: The first line contains M - The minimal number of moves required to complete the
+ *         transformation. The following M lines describe a move, by a peg number to pick from and a peg number to place
+ *         on. If there are more than one solutions, it's sufficient to output any one of them. You can assume, there is
+ *         always a solution with less than 7 moves and the initial confirguration will not be same as the final one.
  * 
  *         Sample Input #00:
  * 
- *         2 3 
- *         1 1 
- *         2 2
+ *         2 3 1 1 2 2
  * 
  *         Sample Output #00:
  * 
- *         3 
- *         1 3 
- *         1 2 
- *         3 2
+ *         3 1 3 1 2 3 2
  * 
  *         Sample Input #01:
  * 
- *         6 4 
- *         4 2 4 3 1 1 
- *         1 1 1 1 1 1
+ *         6 4 4 2 4 3 1 1 1 1 1 1 1 1
  * 
  *         Sample Output #01:
  * 
- *         5 
- *         3 1 
- *         4 3 
- *         4 1 
- *         2 1 
- *         3 1
+ *         5 3 1 4 3 4 1 2 1 3 1
  * 
- *         NOTE: You need to write the full code taking all inputs are from
- *         stdin and outputs to stdout If you are using "Java", the classname is
- *         "Solution"
- *
+ *         NOTE: You need to write the full code taking all inputs are from stdin and outputs to stdout If you are using
+ *         "Java", the classname is "Solution"
+ * 
+ * 
+ * 
+ * 
+ *         Solution
+ * 
+ * 
+ * 
+ *         Tower of Hanoi: The test is about the Tower of Hanoi. The solution is not very difficult, but it took me a
+ *         while to figure out.
+ * 
+ *         Briefly, the problem is: starting from an initial configuration of pegs and discs, arrive at a final
+ *         configuration of pegs and discs, such that the number of movement of the discs is minimal. Furthermore,
+ *         radius property of the Tower of Hanoi (larger disk on top of the smaller disk in any pegs) can not be broken.
+ * 
+ *         Solution: I built a tree (not binary) where the root node is the initial configuration of pegs. For each
+ *         possibility of movement of the initial configuration of disks, a child node is created. Thus, for each child
+ *         node created, I check if the current configuration is the final configuration. If yes, problem was solved and
+ *         we are done =). Otherwise its creates other child nodes of the current node. Note that the verification of
+ *         the current configuration with the final configuration of the nodes is done by breadth-first search (this is
+ *         the secret of this solution to find the smallest number of moves).
+ * 
+ *         You can find my code (in Java) on Github HERE! The entire statement of the problem is described below.
+ * 
+ *         PS: If you develop a different way, please let me know =)
+ * 
  */
-public class Solution {
+public class Solution
+{
 
-	public Solution() {
-		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(
-					System.in));
+	public Solution()
+	{
+		try
+		{
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 			String input[] = br.readLine().split(" ");
 			@SuppressWarnings("unused")
@@ -90,29 +94,33 @@ public class Solution {
 			String begin_config = br.readLine();
 			String end_config = br.readLine();
 
-			Vector<String> moves = breadthFirstSearch(k, begin_config,
-					end_config);
+			Vector<String> moves = breadthFirstSearch(k, begin_config, end_config);
 
 			System.out.println(moves.size());
-			for (String move : moves) {
+			for (String move : moves)
+			{
 				System.out.println(move);
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			System.err.println("Error:" + e.getMessage());
 			e.printStackTrace();
 		}
 	}
 
-	private Vector<String> breadthFirstSearch(int k, String begin_config,
-			String end_config) {
+	private Vector<String> breadthFirstSearch(int k, String begin_config, String end_config)
+	{
 
 		Node node = new Node(null, null, begin_config);
 		Queue<Solution.Node> queue = new LinkedList<Solution.Node>();
 		queue.add(node);
 
-		while (!queue.isEmpty()) {
+		while (!queue.isEmpty())
+		{
 			node = queue.remove();
-			if (!node.isVisited()) {
+			if (!node.isVisited())
+			{
 				node.setVisited(true);
 				if (node.getConfig().equals(end_config))
 					break;
@@ -125,7 +133,8 @@ public class Solution {
 		queue = null;
 
 		Vector<String> moves = new Vector<String>();
-		while (node.getFather() != null) {
+		while (node.getFather() != null)
+		{
 			moves.add(node.getLast_move());
 			node = node.getFather();
 		}
@@ -134,44 +143,53 @@ public class Solution {
 		return moves;
 	}
 
-	public static void main(String args[]) {
+	public static void main(String args[])
+	{
 		new Solution();
 	}
 
-	private class Node {
+	private class Node
+	{
 		private Node father;
+
 		private String last_move;
+
 		private String config;
+
 		private boolean visited = false;
 
-		public Node(Node father, String last_move, String config) {
+		public Node(Node father, String last_move, String config)
+		{
 			super();
 			this.father = father;
 			this.last_move = last_move;
 			this.config = config;
 		}
 
-		public ArrayList<Node> getNexts(int k) {
+		public ArrayList<Node> getNexts(int k)
+		{
 			ArrayList<Node> nexts = new ArrayList<Solution.Node>();
 			Vector<Stack<Integer>> pegs = getPegs(k);
 
-			for (int from = 0; from < k; from++) {
-				for (int to = 0; to < k; to++) {
-					if (from != to) {
+			for (int from = 0; from < k; from++)
+			{
+				for (int to = 0; to < k; to++)
+				{
+					if (from != to)
+					{
 						if (!pegs.get(from).isEmpty()
-								&& (pegs.get(to).isEmpty() || pegs.get(from)
-										.peek() < pegs.get(to).peek())) {
+								&& (pegs.get(to).isEmpty() || pegs.get(from).peek() < pegs.get(to).peek()))
+						{
 
 							String s[] = this.config.split(" ");
-							s[pegs.get(from).peek() - 1] = String
-									.valueOf(to + 1);
+							s[pegs.get(from).peek() - 1] = String.valueOf(to + 1);
 							String config = "";
-							for (int i = 0; i < s.length; i++) {
+							for (int i = 0; i < s.length; i++)
+							{
 								config += s[i] + " ";
 							}
 							config = config.trim();
-							String last_move = String.valueOf(from + 1) + " "
-									+ String.valueOf(to + 1);
+							String last_move = String.valueOf(from + 1) + " " + String.valueOf(to + 1);
 
 							nexts.add(new Node(this, last_move, config));
 						}
@@ -181,35 +199,37 @@ public class Solution {
 			return nexts;
 		}
 
-		private Vector<Stack<Integer>> getPegs(int k) {
+		private Vector<Stack<Integer>> getPegs(int k)
+		{
 			Vector<Stack<Integer>> pegs = new Vector<Stack<Integer>>(k);
-			for (int i = 0; i < k; i++) {
+			for (int i = 0; i < k; i++)
+			{
 				pegs.add(new Stack<Integer>());
 			}
 			String s[] = this.config.split(" ");
-			for (int i = s.length - 1; i >= 0; i--) {
+			for (int i = s.length - 1; i >= 0; i--)
+			{
 				pegs.get(Integer.parseInt(s[i]) - 1).add(i + 1);
 			}
 			return pegs;
 		}
 
 		@Override
-		public int hashCode() {
+		public int hashCode()
+		{
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + getOuterType().hashCode();
-			result = prime * result
-					+ ((config == null) ? 0 : config.hashCode());
-			result = prime * result
-					+ ((father == null) ? 0 : father.hashCode());
-			result = prime * result
-					+ ((last_move == null) ? 0 : last_move.hashCode());
+			result = prime * result + ((config == null) ? 0 : config.hashCode());
+			result = prime * result + ((father == null) ? 0 : father.hashCode());
+			result = prime * result + ((last_move == null) ? 0 : last_move.hashCode());
 			result = prime * result + (visited ? 1231 : 1237);
 			return result;
 		}
 
 		@Override
-		public boolean equals(Object obj) {
+		public boolean equals(Object obj)
+		{
 			if (this == obj)
 				return true;
 			if (obj == null)
@@ -219,47 +239,59 @@ public class Solution {
 			Node other = (Node) obj;
 			if (!getOuterType().equals(other.getOuterType()))
 				return false;
-			if (config == null) {
+			if (config == null)
+			{
 				if (other.config != null)
 					return false;
-			} else if (!config.equals(other.config))
+			}
+			else if (!config.equals(other.config))
 				return false;
-			if (father == null) {
+			if (father == null)
+			{
 				if (other.father != null)
 					return false;
-			} else if (!father.equals(other.father))
+			}
+			else if (!father.equals(other.father))
 				return false;
-			if (last_move == null) {
+			if (last_move == null)
+			{
 				if (other.last_move != null)
 					return false;
-			} else if (!last_move.equals(other.last_move))
+			}
+			else if (!last_move.equals(other.last_move))
 				return false;
 			if (visited != other.visited)
 				return false;
 			return true;
 		}
 
-		public Node getFather() {
+		public Node getFather()
+		{
 			return father;
 		}
 
-		public String getLast_move() {
+		public String getLast_move()
+		{
 			return last_move;
 		}
 
-		public String getConfig() {
+		public String getConfig()
+		{
 			return config;
 		}
 
-		public boolean isVisited() {
+		public boolean isVisited()
+		{
 			return visited;
 		}
 
-		public void setVisited(boolean visited) {
+		public void setVisited(boolean visited)
+		{
 			this.visited = visited;
 		}
 
-		private Solution getOuterType() {
+		private Solution getOuterType()
+		{
 			return Solution.this;
 		}
 
