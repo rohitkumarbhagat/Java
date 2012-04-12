@@ -1,4 +1,4 @@
-package dp;
+package algo.dp;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

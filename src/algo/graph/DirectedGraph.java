@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graph;
+package algo.graph;
 
 import java.util.ArrayList;
 import java.util.List;

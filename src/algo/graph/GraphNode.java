@@ -1,7 +1,7 @@
 /**
  * 
  */
-package graph;
+package algo.graph;
 
 /**
  * @author erotkur
