@@ -1,9 +1,11 @@
 package algo.search;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.util.Deque;
 import java.util.LinkedList;
-
-import com.sun.org.apache.bcel.internal.generic.LSTORE;
+import java.util.Observable;
 
 //	You are in a room with a circle of 100 chairs.  The chairs are numbered sequentially from 1 to 100.
 //	At some point in time, the person in chair #1 will be asked to leave.  The person in chair #2 will be skipped,
@@ -13,8 +15,11 @@ import com.sun.org.apache.bcel.internal.generic.LSTORE;
 
 public class LastRemainingCircular {
 	public static void main(String[] args) {
-		System.out.println(findRemainingMan());
-		System.out.println(findRemainingMan_new());
+		int n = 6;
+		System.out.println(findRemainingMan(n));
+		System.out.println(findRemainingMan_new(n));
+		System.out.println(find(n));
+		System.out.println(find_best(n));
 
 		// int NoOfChair = 100;
 		// int i = 0;
@@ -23,9 +28,9 @@ public class LastRemainingCircular {
 		// System.out.println("Element will be " + (2 << i));
 	}
 
-	private static int findRemainingMan() {
+	private static int findRemainingMan(int n) {
 		Deque<Integer> crclrQueue = new LinkedList<Integer>();
-		for (int i = 1; i <= 300; i++) {
+		for (int i = 1; i <= n; i++) {
 			crclrQueue.add(i);
 		}
 		boolean remove = true;
@@ -40,11 +45,12 @@ public class LastRemainingCircular {
 			}
 			remove = !remove;
 		}
+
 		return lastRemoved;
 	}
 
-	private static int findRemainingMan_new() {
-		int n = 100;
+	private static int findRemainingMan_new(int n) {
+
 		// Sum of all Elements
 		int sum = (n * (n + 1)) / 2;
 		// counter of number of elements removed
@@ -82,5 +88,60 @@ public class LastRemainingCircular {
 
 		}
 		return lastRemainingElement;
+	}
+
+	public static int find(int n) {
+
+		if (n == 1)
+			return 1;
+
+		boolean isEven = (n % 2 == 0);
+
+		if (isEven)
+			return 2 * find(n / 2);
+		else {
+			int next = n / 2;
+			boolean isPowerOfTwo = (next != 0 && (next & (next - 1)) == 0);
+			int a = (isPowerOfTwo ? 0 : 2);
+
+			return a * find(next) + 2;
+		}
+
+	}
+
+	public static int find_best(int n) {
+
+		// initialize some variables
+		int startElem = 1; // first element in iteration
+		int lastElem = n; // last remaining element in each iteration
+		int jumpLength = 1; // numbers to consider
+		int removalStatus = -1;// -1 indicates remove , 1 indicates save
+		while (startElem != lastElem) {
+			// each loop indicates one cycle through last element
+			int noOfStepsToLast = (lastElem - startElem) / jumpLength;
+			// check wheteher last elem will be removed, if yes then update it
+			if (removalStatus == -1) {
+				startElem = startElem + jumpLength;
+			}
+			if ((removalStatus * (Math.pow(-1, noOfStepsToLast))) == -1) {
+				// remove last element
+				lastElem = lastElem - jumpLength;
+				removalStatus = 1;
+				// first element would be saved
+			} else {
+				removalStatus = -1;
+				// protect last element and remove first element
+
+			}
+			jumpLength = 2 * jumpLength;
+			// if start elem will be removed update it
+
+			// update the jump length
+
+			// update the removal status of the start element
+
+		}
+		return startElem;
+
 	}
 }
