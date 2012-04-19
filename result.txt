@@ -1,0 +1,226 @@
+Sentence Count = 0
+****************************************************
+Duplicate Sentences 
+----------------------
+****************************************************
+Top 100 words by frequency are 
+---------------------------
+Word = a
+Frequency = 1391
+Word = i
+Frequency = 2841
+Word = s
+Frequency = 86
+Word = which
+Frequency = 558
+Word = every
+Frequency = 109
+Word = its
+Frequency = 123
+Word = some
+Frequency = 147
+Word = they
+Frequency = 210
+Word = them
+Frequency = 106
+Word = then
+Frequency = 107
+Word = such
+Frequency = 87
+Word = this
+Frequency = 393
+Word = that
+Frequency = 1016
+Word = than
+Frequency = 110
+Word = these
+Frequency = 154
+Word = had
+Frequency = 685
+Word = her
+Frequency = 359
+Word = him
+Frequency = 199
+Word = his
+Frequency = 535
+Word = your
+Frequency = 253
+Word = night
+Frequency = 84
+Word = you
+Frequency = 550
+Word = their
+Frequency = 186
+Word = said
+Frequency = 101
+Word = he
+Frequency = 605
+Word = do
+Frequency = 115
+Word = yet
+Frequency = 152
+Word = by
+Frequency = 461
+Word = be
+Frequency = 356
+Word = at
+Frequency = 317
+Word = as
+Frequency = 527
+Word = am
+Frequency = 123
+Word = an
+Frequency = 211
+Word = no
+Frequency = 169
+Word = of
+Frequency = 2642
+Word = on
+Frequency = 458
+Word = or
+Frequency = 177
+Word = me
+Frequency = 733
+Word = my
+Frequency = 1776
+Word = if
+Frequency = 194
+Word = is
+Frequency = 307
+Word = it
+Frequency = 503
+Word = in
+Frequency = 1127
+Word = how
+Frequency = 94
+Word = we
+Frequency = 174
+Word = to
+Frequency = 2094
+Word = so
+Frequency = 207
+Word = should
+Frequency = 153
+Word = into
+Frequency = 124
+Word = again
+Frequency = 78
+Word = before
+Frequency = 140
+Word = who
+Frequency = 174
+Word = was
+Frequency = 1017
+Word = for
+Frequency = 461
+Word = even
+Frequency = 94
+Word = time
+Frequency = 92
+Word = eyes
+Frequency = 94
+Word = would
+Frequency = 184
+Word = father
+Frequency = 122
+Word = did
+Frequency = 119
+Word = might
+Frequency = 108
+Word = the
+Frequency = 4194
+Word = upon
+Frequency = 125
+Word = life
+Frequency = 90
+Word = saw
+Frequency = 94
+Word = she
+Frequency = 252
+Word = with
+Frequency = 666
+Word = can
+Frequency = 93
+Word = but
+Frequency = 687
+Word = been
+Frequency = 186
+Word = any
+Frequency = 84
+Word = and
+Frequency = 2976
+Word = all
+Frequency = 195
+Word = most
+Frequency = 88
+Word = more
+Frequency = 158
+Word = those
+Frequency = 91
+Word = are
+Frequency = 172
+Word = have
+Frequency = 365
+Word = towards
+Frequency = 94
+Word = not
+Frequency = 501
+Word = now
+Frequency = 152
+Word = myself
+Frequency = 119
+Word = could
+Frequency = 197
+Word = only
+Frequency = 121
+Word = from
+Frequency = 385
+Word = found
+Frequency = 83
+Word = own
+Frequency = 99
+Word = our
+Frequency = 126
+Word = were
+Frequency = 308
+Word = one
+Frequency = 206
+Word = will
+Frequency = 194
+Word = whom
+Frequency = 80
+Word = first
+Frequency = 108
+Word = man
+Frequency = 113
+Word = may
+Frequency = 98
+Word = what
+Frequency = 132
+Word = me.
+Frequency = 114
+Word = being
+Frequency = 83
+Word = when
+Frequency = 328
+Word = shall
+Frequency = 105
+****************************************************
+
+Sentence Number : 23 
+-----------------------------
+null
+Sentence Number : 189 
+-----------------------------
+null
+Sentence Number : 590 
+-----------------------------
+null
+Sentence Number : 690 
+-----------------------------
+null
+Sentence Number : 847 
+-----------------------------
+null
+****************************************************
+Time Taken =146  milliseconds

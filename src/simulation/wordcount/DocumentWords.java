@@ -24,18 +24,18 @@ public class DocumentWords {
 
 	}
 
-	public List<String[]> getNWordsByfrequency(int n) {
-		List<String[]> words = new ArrayList<String[]>(n);
+	public List<String> getNWordsByfrequency(int n) {
+		List<String> words = new ArrayList<String>(n);
 		if (n < wordMap.size()) {
 			List<Integer> valuesList = new ArrayList<Integer>(wordMap.values());
 			Collections.sort(valuesList);
 			int limit = valuesList.get(valuesList.size() - n);
 			for (String word : wordMap.keySet()) {
 				if (wordMap.get(word) >= limit) {
-					String[] wordData = new String[2];
-					wordData[0] = word;
-					wordData[1] = wordMap.get(word) + "";
-					words.add(wordData);
+					// String[] wordData = new String[2];
+					// wordData[0] = word;
+					// wordData[1] = wordMap.get(word) + "";
+					words.add("\nWord = "+word+"\nFrequency = "+wordMap.get(word));
 				}
 			}
 		}

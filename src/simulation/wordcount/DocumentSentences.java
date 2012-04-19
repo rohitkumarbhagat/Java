@@ -47,15 +47,15 @@ public class DocumentSentences {
 		return null;
 	}
 
-	public List<String[]> getDuplicateSentences() {
-		List<String[]> duplicateSentenceList = new ArrayList<String[]>();
+	public List<String> getDuplicateSentences() {
+		List<String> duplicateSentenceList = new ArrayList<String>();
 
 		for (Sentence sentence : sentenceList) {
 			if (sentence.count > 1) {
-				String[] duplicateEntry = new String[2];
-				duplicateEntry[0] = sentence.toString();
-				duplicateEntry[1] = sentence.getCount() + "";
-				duplicateSentenceList.add(duplicateEntry);
+//				String[] duplicateEntry = new String[2];
+//				duplicateEntry[0] = sentence.toString()+"\nCount="+sentence.getCount()+'\n';
+//				duplicateEntry[1] = sentence.getCount() + "";
+				duplicateSentenceList.add("\nSentence = "+sentence.toString()+"\nCount="+sentence.getCount());
 			}
 		}
 		return duplicateSentenceList;
