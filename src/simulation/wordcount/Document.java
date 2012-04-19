@@ -35,7 +35,6 @@ public class Document {
 		FileChannel fc = null;
 		int beg = 0;
 
-		// try {
 		fc = (new FileInputStream(file)).getChannel();
 		documentByteBuffer = fc
 				.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
@@ -51,16 +50,17 @@ public class Document {
 
 			abc = abc > 64 && abc < 91 ? (char) (abc + 32) : abc;
 
-			if (isCharWordDelimeter(abc)) {
+			if (isCharWordDelimeter(abc) || isCharSentenceDelimeter(abc)) {
 				if (processWord(word)) {
 					word = new StringBuilder();
 				}
-			} else if (isCharSentenceDelimeter(abc)) {
+				if (isCharSentenceDelimeter(abc)) {
 
-				documentsentences.addSentence(beg,
-						documentByteBuffer.position() - 1);
-				// sentenceEnd = false;
-				beg = documentByteBuffer.position();
+					documentsentences.addSentence(beg,
+							documentByteBuffer.position() - 1);
+					// sentenceEnd = false;
+					beg = documentByteBuffer.position();
+				}
 			} else {
 				word.append(abc);
 			}
@@ -79,11 +79,11 @@ public class Document {
 		return false;
 	}
 
-	public final int sentenceCount() {
+	public int sentenceCount() {
 		return documentsentences.getSentenceCount();
 	}
 
-	public final String getNthSentence(int n) {
+	public String getNthSentence(int n) {
 		return documentsentences.getNthSentence(n);
 	}
 

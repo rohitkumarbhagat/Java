@@ -1,7 +1,8 @@
 package algo.datastructure.tree;
 
-import static org.junit.Assert.*;
-import junit.framework.TestCase;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.AfterClass;
