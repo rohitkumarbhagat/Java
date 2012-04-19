@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class DocumentWords {
 
+	// 
 	private final Map<String, Integer> wordMap;
 
 	public DocumentWords() {
@@ -24,6 +25,12 @@ public class DocumentWords {
 
 	}
 
+	/**
+	 * returns atleast n words which have highest frequency
+	 * 
+	 * @param n
+	 * @return
+	 */
 	public List<String> getNWordsByfrequency(int n) {
 		List<String> words = new ArrayList<String>(n);
 		if (n < wordMap.size()) {
@@ -32,9 +39,6 @@ public class DocumentWords {
 			int limit = valuesList.get(valuesList.size() - n);
 			for (String word : wordMap.keySet()) {
 				if (wordMap.get(word) >= limit) {
-					// String[] wordData = new String[2];
-					// wordData[0] = word;
-					// wordData[1] = wordMap.get(word) + "";
 					words.add("\nWord = "+word+"\nFrequency = "+wordMap.get(word));
 				}
 			}

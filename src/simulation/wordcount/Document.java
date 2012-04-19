@@ -30,7 +30,7 @@ public class Document {
 		sentenceDelimeters = sd;
 	}
 
-	public final void processFile() throws IOException, FileNotFoundException {
+	public  void processFile() throws IOException, FileNotFoundException {
 		FileChannel fc = null;
 		int beg = 0;
 
@@ -64,43 +64,9 @@ public class Document {
 				word.append(abc);
 			}
 
-			// switch (abc) {
-			// case '!':
-			// case '?':
-			// case ']':
-			// case '.':
-			// sentenceEnd = true;
-			// case ' ':
-			// case ',':
-			// case '-':
-			// case ';':
-			// case '\'':
-			// case '"':
-			// case '\r':
-			// case '\n': // word is complete
-			//
-			// int wordIndex = processWord(word);
-			// if (wordIndex != -1) {
-			// word = new StringBuilder();
-			// }
-			// if (sentenceEnd) {
-			//
-			// documentsentences.addSentence(beg,
-			// documentByteBuffer.position() - 1);
-			// sentenceEnd = false;
-			// beg = documentByteBuffer.position();
-			// }
-			// break;
-			// default:
-			// word.append(abc);
-			//
-			// }
 		}
 
 		fc.close();
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// }
 
 	}
 
@@ -128,26 +94,6 @@ public class Document {
 		return documentWords.getNWordsByfrequency(n);
 	}
 
-	public static void main(String[] args) {
-		long currentTime = System.currentTimeMillis();
-		Document d = new Document("/Users/rohitkumar/Downloads/book.txt");
-		try {
-			d.processFile();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(d.documentsentences.getSentenceCount());
-		System.out.println(d.documentsentences.getNthSentence(24));
-		System.out.println(d.documentsentences.getDuplicateSentences());
-		System.out.println(d.documentWords.getNWordsByfrequency(100));
-		System.out.println("Time Taken :"
-				+ (System.currentTimeMillis() - currentTime));
-	}
-
 	private boolean isCharWordDelimeter(char c) {
 		for (char wordDelimeter : wordDelimeters) {
 			if (c == wordDelimeter) {
@@ -158,7 +104,7 @@ public class Document {
 	}
 
 	private boolean isCharSentenceDelimeter(char c) {
-		for (char sentenceDelimeter : wordDelimeters) {
+		for (char sentenceDelimeter : sentenceDelimeters) {
 			if (c == sentenceDelimeter) {
 				return true;
 			}
