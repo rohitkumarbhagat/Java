@@ -3,9 +3,6 @@
  */
 package algo.datastructure.tree;
 
-import java.util.ArrayList;
-
-import com.sun.tools.javac.code.Attribute.Array;
 
 /**
  * @author erotkur

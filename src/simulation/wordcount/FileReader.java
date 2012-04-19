@@ -61,7 +61,7 @@ public class FileReader {
 		int end = 0;
 		char lastchar = '\0';
 		try {
-			fc = (new FileInputStream("/Users/rohitkumar/Downloads/book.txt"))
+			fc = (new FileInputStream("/home/erotkur/Downloads/book.txt"))
 					.getChannel();
 			ByteBuffer ib = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
 
@@ -87,7 +87,7 @@ public class FileReader {
 				case '"':
 				case '\r':
 				case '\n': // word is complete
-					lastchar = abc;
+					end++;
 					int wordIndex = processWord(word);
 					if (wordIndex != -1) {
 						sentence.add(wordIndex);
@@ -97,10 +97,11 @@ public class FileReader {
 					if (sentenceEnd) {
 
 						if (process(sentence) == 1) {
-							lastchar = '\0';
+						// beg indx and last index has been found, use it with array.. if beg and previous beg element makes ." then beg++
 							sentence = new ArrayList<Integer>();
 						}
 						sentenceEnd = false;
+						beg=end=ib.position();
 					}
 					break;
 				default:
