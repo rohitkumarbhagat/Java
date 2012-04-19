@@ -28,6 +28,10 @@ public class DocumentWords {
 		}
 
 	}
+	
+	public Map<String, Integer> getWordMap() {
+		return wordMap;
+	}
 
 	/**
 	 * returns atleast n words which have highest frequency in document

@@ -16,7 +16,7 @@ public class TestDocument {
 	@BeforeClass
 	public static void init() throws FileNotFoundException, IOException {
 		try {
-			document = new Document("test.txt");
+			document = new Document("test1.txt");
 			document.processFile();
 		} catch (Exception e) {
 			e.printStackTrace();
