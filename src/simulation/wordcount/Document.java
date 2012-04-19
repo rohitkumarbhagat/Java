@@ -58,7 +58,6 @@ public class Document {
 
 					documentsentences.addSentence(beg,
 							documentByteBuffer.position() - 1);
-					// sentenceEnd = false;
 					beg = documentByteBuffer.position();
 				}
 			} else {
