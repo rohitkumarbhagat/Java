@@ -11,6 +11,7 @@ import java.util.List;
 public class Document {
 
 	private File file;
+	// byte buffer representation document
 	private ByteBuffer documentByteBuffer;
 	private DocumentSentences documentsentences;
 	private DocumentWords documentWords;
@@ -30,7 +31,7 @@ public class Document {
 		sentenceDelimeters = sd;
 	}
 
-	public  void processFile() throws IOException, FileNotFoundException {
+	public void processFile() throws IOException, FileNotFoundException {
 		FileChannel fc = null;
 		int beg = 0;
 
