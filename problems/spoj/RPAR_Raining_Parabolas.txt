@@ -1,0 +1,20 @@
+here different nodes are updated with different weights in a range.
+Fortunately when querying the range, the sum is asked. And we have a trick here.
+
+the idea is simple.
+Mathematically sum of two parabolas is also a parabola.
+
+(a1*x^2 + b1*x + c1) + (a2*x^2 + b2*x + c2) = (a1+a2) * x^2 + (b1+b2) * x + (c1+c2)
+which is also a parabola.
+
+let Q(x) = a * x^2 + b * x + c
+suppose a parabola falls in range (x1,x2)
+the sum is
+Q(x1) + Q(x1+1) + Q(x1+2) ... Q(x2)
+= a * (x1^2 + (x1+1) ^2 + (x1+2) ^2 .... x2^2 )
++ b * ( x1 + x1+1 + x1+2 ... x2 ) + c * (x2-x1+1)
+
+
+Store 4 things in each node.
+3 coefficients of the parabolas and 1 sum of the blocks in the range the node covers.
+
