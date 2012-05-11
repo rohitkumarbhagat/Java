@@ -13,10 +13,10 @@ public class MappedBufferImpl {
 		FileChannel fc;
 		try {
 			StringBuilder strBuilder = new StringBuilder();
-			BlockingQueue<StringBuilder> lqueue = new LinkedBlockingQueue<StringBuilder>();
-			fc = (new FileInputStream("/Users/rohitkumar/Downloads/book.txt"))
-					.getChannel();
-			ByteBuffer ib = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
+			//BlockingQueue<StringBuilder> lqueue = new LinkedBlockingQueue<StringBuilder>();
+			//fc = (new FileInputStream("/Users/rohitkumar/Downloads/book.txt"))
+			//		.getChannel();
+			//ByteBuffer ib = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
 //			 ByteBuffer ib = ByteBuffer.allocate((int)fc.size());
 //			 fc.read(ib);
 //			 //ib.position(0);
@@ -33,25 +33,26 @@ public class MappedBufferImpl {
 			// //System.out.println(lines.length);
 			char abc;
 			
+			 String encoding = System.getProperty("file.encoding");
+			 System.out.println(encoding);
 			
 			
-			
-			while (ib.hasRemaining()) {
-				abc = (char) ib.get();
-				
-				if (abc == '\n' || abc == '\r') {
-					// if (strBuilder.length() > 0) {
-					// lqueue.add(strBuilder);
-					// strBuilder = new StringBuilder();
-					// }
-				} else {
-					// strBuilder.append(abc);
-				}
-
-			}
-			System.out.println(lqueue.size());
-
-			fc.close();
+//			while (ib.hasRemaining()) {
+//				abc = (char) ib.get();
+//				
+//				if (abc == '\n' || abc == '\r') {
+//					// if (strBuilder.length() > 0) {
+//					// lqueue.add(strBuilder);
+//					// strBuilder = new StringBuilder();
+//					// }
+//				} else {
+//					// strBuilder.append(abc);
+//				}
+//
+//			}
+//			System.out.println(lqueue.size());
+//
+//			fc.close();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -96,13 +97,15 @@ public class MappedBufferImpl {
 
 	public static void main(String[] args) {
 		long currentime = System.currentTimeMillis();
-		mapped();
+		//mapped();
 		System.out.println("mapped time = "
 				+ (System.currentTimeMillis() - currentime));
 		currentime = System.currentTimeMillis();
-		stream();
+		//stream();
 		System.out.println("strreeam time = "
 				+ (System.currentTimeMillis() - currentime));
+		 String encoding = System.getProperty("file.encoding");
+		 System.out.println(encoding);
 
 	}
 }
