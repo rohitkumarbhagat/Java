@@ -1,0 +1,93 @@
+Telltale
+
+Your friend likes to go to parties and tell stories. At each party, he tells his 
+favorite tale. The tale can be told in two variants - true or exaggerated. 
+The exaggerated variant of the story sounds much cooler, so he wants to use it as often as
+ possible, but he doesn't want to be known as a liar. The problem is that some people already 
+ know the true variant of this story, so if any of those people are at the same party as him, he must 
+ tell the story truthfully. Also, if a person hears different variants of the story at different parties,
+  she's also able to detect that your friend is a liar, so he must avoid this as well.
+
+You are given an int n, the total number of people (numbered 1 through n). The people 
+who already know the true variant of the story are given in the int[] a. The people at each party 
+that your friend will attend are given in the String[] parties, where the i-th element is a space-separated 
+list of all the people attending the i-th party. Return the maximum number of parties where your friend can 
+tell the exaggerated variant of his story and not have anybody detect that he's a liar.
+
+ 
+Definition
+    	
+Class:	Telltale
+Method:	doNotTellTheTruth
+Parameters:	int, int[], String[]
+Returns:	int
+Method signature:	int doNotTellTheTruth(int n, int[] a, String[] parties)
+(be sure your method is public)
+    
+ 
+Constraints
+-	n will be between 1 and 50, inclusive.
+-	a will contain between 0 and n elements, inclusive.
+-	Each element of a will be between 1 and n, inclusive.
+-	All elements of a will be distinct.
+-	parties will contain between 1 and 50 elements, inclusive.
+-	Each element of parties will contain between 1 and 50 characters, inclusive.
+-	Each element of parties will contain a single-space separated list of integers without leading or trailing spaces.
+-	Integers in each element of parties will be between 1 and n, inclusive, with no leading zeros.
+-	Integers in each elements of parties will be distinct.
+ 
+Examples
+0)	
+    	
+4
+{}
+{"1 2", "3", "2 3 4"}
+Returns: 3
+Nobody knows the true story, so your friend can tell the exaggerated variant at all 3 parties.
+1)	
+    	
+4
+{1}
+{"1 2 3 4"}
+Returns: 0
+Person 1 knows the true story. There's only one party, and she is present there, so your friend can never tell the exaggerated variant.
+2)	
+    	
+4
+{}
+{"1 2 3 4"}
+Returns: 1
+Now person 1 doesn't know the true story, so your friend can tell the exaggerated variant.
+3)	
+    	
+4
+{1}
+{"1", "2", "3", "4", "4 1"}
+Returns: 2
+Person 1 knows the true story. She's present at parties 0 and 4 (0-indexed), so he must tell the true variant at those parties. Person 4 will hear the true story at party 4, and she will also be at party 3, so he must tell the true variant at party 3. So, the exaggerated variant can only be told at parties 1 and 2.
+4)	
+    	
+10
+{1, 2, 3, 4}
+{"1 5", "2 6", "7", "8", "7 8", "9", "10", "3 10", "4"}
+Returns: 4
+5)	
+    	
+8
+{1, 2, 7}
+{"3 4", "5", "5 6", "6 8", "8"}
+Returns: 5
+6)	
+    	
+3
+{3}
+{"1", "2", "1 2", "1 2 3"}
+Returns: 0
+This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2010, TopCoder, Inc. All rights reserved.
+
+
+
+
+This problem was used for: 
+       TCHS Single Round Match 63 Round 1 - Division I, Level Two
+

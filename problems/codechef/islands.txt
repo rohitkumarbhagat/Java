@@ -1,0 +1,26 @@
+There is a rectangular N x M grid of square cells. Each cell is either a unit of land or a unit of water. Two cells are adjacent if they share a side. Two adjacent land cells are said to be part of the same island. The size of an island is the number of land cells that form that island. 
+Given the N X M grid, you are required to find the total number of islands and the size of the largest island. 
+Input
+
+The first line contains two integers N and M(1<=N,M<=1000), separated by a space. The next N lines contain M characters each. Each of these M characters is either a '.' or a 'x', representing a water cell and a land cell respectively.
+Output
+
+The output contains two integers separated by a space. The first integer is the number of islands and the second integer is the size of the largest island.
+Example
+
+Input:
+4 5
+xx..x
+xxxx.
+..xx.
+xx...
+
+Output:
+3 8
+
+Explanation: 
+In the grid below, cells marked with the same number are part of the same island. The island that is marked with the integer 1 has a size of 8.
+1 1  .  . 2
+1 1 1 1 .
+.  .  1 1 .
+3 3 .  .  .
