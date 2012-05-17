@@ -45,6 +45,7 @@ public class QuickSort implements CanSort {
 
 	public int median(int[] a, int beg, int end) {
 		if (beg == end) {
+			// as median is always between beg and end
 			return a[beg];
 		}
 		if (beg > end) {
@@ -63,4 +64,9 @@ public class QuickSort implements CanSort {
 		}
 
 	}
+	
+	
+	
+	
+	
 }
