@@ -3,7 +3,7 @@ package algo.dp;
 import java.util.Arrays;
 
 public class LargestUniqueString {
-	private static int[]  present = new int[128];
+	private static int[] present = new int[128];
 
 	private static void clearPresent() {
 		Arrays.fill(present, -1);
@@ -24,12 +24,14 @@ public class LargestUniqueString {
 			int presentIndex = present[str.charAt(iterator)];
 			if (presentIndex == -1 || presentIndex < lastStartPosition) {
 				// not present
-				present[str.charAt(iterator)] = iterator;
+				// present[str.charAt(iterator)] = iterator;
 
 			} else {
 				// present
 				lastStartPosition = presentIndex + 1;
+
 			}
+			present[str.charAt(iterator)] = iterator;
 			if (iterator - lastStartPosition > maxEndPosition
 					- maxStartPosition) {
 				maxEndPosition = iterator;
@@ -41,9 +43,9 @@ public class LargestUniqueString {
 		return output;
 
 	}
-	
-	
+
 	public static void main(String[] args) {
-		System.out.println(getLargestUniqueString("abbcxrtdefgghju"));
+		 System.out.println(getLargestUniqueString("abbcxrtdefgghju"));
+		System.out.println(getLargestUniqueString("abcxbrtbdefgghju"));
 	}
 }
