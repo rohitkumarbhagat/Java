@@ -40,14 +40,22 @@ public class KnapsackProblems {
 		}
 		System.out.println();
 	}
-	
-	int zeroOneKnapSack(int[] sizes, int[] weights, int capacity){
-		int[] lastRow=new int[capacity+1];
-		int[] currentRow=new int[capacity+1];
-		int currentSizeIndex=0;
-		for(int i=0;i<sizes.length)
-		return currentRow[capacity];
-		
-	}
 
+	int zeroOneKnapSack(int[] sizes, int[] weights, int capacity) {
+		int[] lastRow = new int[capacity + 1];
+		int[] currentRow = new int[capacity + 1];
+		for (int i = 0; i < sizes.length; i++) {
+			for (int tempCap = 0; tempCap <= capacity; tempCap++) {
+				if (tempCap >= sizes[i]) {
+					currentRow[tempCap] = Math.max(currentRow[tempCap
+							- sizes[i]], lastRow[tempCap]);
+					
+				}
+
+			}
+			lastRow=currentRow;
+		}
+		return currentRow[capacity];
+
+	}
 }
