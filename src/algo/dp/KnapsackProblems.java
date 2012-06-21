@@ -28,7 +28,7 @@ public class KnapsackProblems {
 				}
 			}
 		}
-		printSelectedSizes(parentArray, capacity);
+	//	printSelectedSizes(parentArray, capacity);
 		return optimalList[capacity];
 
 	}
@@ -44,18 +44,39 @@ public class KnapsackProblems {
 	int zeroOneKnapSack(int[] sizes, int[] weights, int capacity) {
 		int[] lastRow = new int[capacity + 1];
 		int[] currentRow = new int[capacity + 1];
+		boolean[][] parents = new boolean[sizes.length][capacity + 1];
 		for (int i = 0; i < sizes.length; i++) {
 			for (int tempCap = 0; tempCap <= capacity; tempCap++) {
+				currentRow[tempCap] = lastRow[tempCap];
+				parents[i][tempCap]=false;
 				if (tempCap >= sizes[i]) {
-					currentRow[tempCap] = Math.max(currentRow[tempCap
-							- sizes[i]], lastRow[tempCap]);
-					
+					currentRow[tempCap] = Math.max(lastRow[tempCap - sizes[i]]
+							+ weights[i], lastRow[tempCap]);
+					parents[i][tempCap] = currentRow[tempCap] == lastRow[tempCap] ? false
+							: true;
+
 				}
 
 			}
-			lastRow=currentRow;
+			int[] tmp = currentRow;
+			currentRow = lastRow;
+			lastRow = tmp;
+
 		}
+		zeroOneKnapSackPrint(parents, sizes, capacity);
+		System.out.println();
 		return currentRow[capacity];
 
+	}
+
+	private void zeroOneKnapSackPrint(boolean[][] presenceMatrix, int[] sizes,
+			int capacity) {
+		int currentCap = capacity;
+		for (int i = sizes.length - 1; i > -1; i--) {
+			if (presenceMatrix[i][currentCap] == true) {
+				System.out.print(sizes[i] + " ");
+				currentCap = currentCap - sizes[i];
+			}
+		}
 	}
 }
