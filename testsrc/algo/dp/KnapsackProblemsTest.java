@@ -31,5 +31,17 @@ public class KnapsackProblemsTest {
 		assertEquals(6, knapsack.unboundedKnapsack(sizes, weights, 5));
 		assertEquals(30, knapsack.unboundedKnapsack(sizes, weights, 25));
 	}
+	
+	@Test
+	public void test2() {
+		int[] sizes={2,5,12,23};
+		int[] weights={1,6,7,9};
+		
+		assertEquals(12, knapsack.zeroOneKnapSack(sizes, weights, 10));
+		assertEquals(0, knapsack.zeroOneKnapSack(sizes, weights, 0));
+		assertEquals(0, knapsack.zeroOneKnapSack(sizes, weights, 1));
+		assertEquals(6, knapsack.zeroOneKnapSack(sizes, weights, 5));
+		assertEquals(30, knapsack.zeroOneKnapSack(sizes, weights, 25));
+	}
 
 }
